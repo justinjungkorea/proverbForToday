@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>오늘의 잠언</title>
+    <meta property="og:title" content="test"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="https://justinjungkorea.github.io/proverbForToday/"/>
+    <meta property="og:description" content="오늘의 잠언"/>
+    <meta property="og:image" content="proverb.jpg"/>
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,7 +28,7 @@
             <option value='krv2'>개역개정</option>
             <option value='kjv' >KJV</option>
         </select>
-        <button>전체 복사</button>
+        <button id="copyAll">전체 복사</button>
 <!--        <button disabled>내 노트</button><br/>-->
     </div>
     <div id="wordsBox"></div>
