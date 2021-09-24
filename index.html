@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>오늘의 잠언</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menuBox">
+        <label id="today"></label>
+        <select name='mainVersion' id='mainVersion'>
+            <option value='kjv_ko' selected>흠정역</option>
+            <option value='krv'>개역한글</option>
+            <option value='krv2'>개역개정</option>
+            <option value='kjv'>KJV</option>
+        </select>
+        <select name='subVersion' id='subVersion'>
+            <option value='none' selected>대역</option>
+            <option value='kjv_ko' >흠정역</option>
+            <option value='krv'>개역한글</option>
+            <option value='krv2'>개역개정</option>
+            <option value='kjv' >KJV</option>
+        </select>
+        <button>전체 복사</button>
+<!--        <button disabled>내 노트</button><br/>-->
+    </div>
+    <div id="wordsBox"></div>
+
+<!--    <script type="text/javascript" src="kjv_ko.json"></script>-->
+<!--    <script type="text/javascript" src="kjv.json"></script>-->
+<!--    <script type="text/javascript" src="krv.json"></script>-->
+<!--    <script type="text/javascript" src="krv2.json"></script>-->
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
