@@ -92,7 +92,17 @@ const getBook = () => {
             for(let key in mainBook){
               let verse = document.createElement('p');
               verse.id = key;
-              verse.style.color = 'black';
+
+              //메모가 된 경우 반영
+              if(verseMemo[key]){
+                verse.style.color = '#003399';
+                verse.style.fontWeight = '500';
+              }
+              else {
+                verse.style.color = 'black';
+                verse.style.fontWeight = '400';
+              }
+
               verse.innerHTML = '<br/>' + key + ". " + mainBook[key] + '<br/>' +  key + ". " + subBook[key];
               wordsBox.appendChild(verse);
             }
