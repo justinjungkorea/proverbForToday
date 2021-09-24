@@ -3,6 +3,7 @@ let today = document.getElementById('today');
 let wordsBox = document.getElementById('wordsBox');
 let mainVersion = document.getElementById('mainVersion');
 let subVersion = document.getElementById('subVersion');
+let copyAll = document.getElementById('copyAll');
 
 
 let mainBook;
@@ -111,4 +112,12 @@ subVersion.addEventListener('change', event => {
   getBook()
 })
 
-
+//전체 복사
+copyAll.addEventListener('click', async () => {
+  let str = '잠언 ' + chapter + '장' + '\n';
+  for(let i=1;i<=numberOfVerse;++i){
+    let element = document.getElementById(i)
+    str = str + element.innerText + '\n';
+  }
+  await navigator.clipboard.writeText(str);
+})
