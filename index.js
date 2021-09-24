@@ -10,6 +10,8 @@ let mainBook;
 let subBook;
 let chapter = new Date().getDate();
 let numberOfVerse;
+let isSaved = !!localStorage.getItem(chapter.toString());
+let verseMemo = isSaved ? JSON.parse(localStorage.getItem(chapter.toString())) : {};
 
 today.innerText = new Date().getMonth()+1 + '월 ' + chapter + '일'
 
@@ -23,22 +25,25 @@ const selectVerse = async id => {
   if (selectedVerse.style.color === "black") {
     selectedVerse.style.color = "#003399";
     selectedVerse.style.fontWeight = '500';
+    verseMemo[id] = true;
   } else {
     selectedVerse.style.color = "black";
     selectedVerse.style.fontWeight = '400';
+    delete verseMemo[id];
   }
+
+  localStorage.setItem(chapter.toString(), JSON.stringify(verseMemo));
 
   //선택된 구절 클립보드에 복사
   let str = '';
   for(let i=1;i<=numberOfVerse;++i){
-    let element = document.getElementById(i)
-    if(element.style.color !== 'black'){
+    if(verseMemo[i]){
+      let element = document.getElementById(i);
       str = str + element.innerText + '\n';
     }
   }
   str = str + '잠언 ' + chapter + '장';
   await navigator.clipboard.writeText(str);
-
 }
 
 //성경 불러오기
@@ -58,7 +63,17 @@ const getBook = () => {
         for(let key in mainBook){
           let verse = document.createElement('p');
           verse.id = key
-          verse.style.color = 'black';
+
+          //메모가 된 경우 반영
+          if(verseMemo[key]){
+            verse.style.color = '#003399';
+            verse.style.fontWeight = '500';
+          }
+          else {
+            verse.style.color = 'black';
+            verse.style.fontWeight = '400';
+          }
+
           verse.innerHTML = key + ". " + mainBook[key];
           wordsBox.appendChild(verse);
 
