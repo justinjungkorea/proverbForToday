@@ -38,8 +38,7 @@ const selectVerse = async id => {
   let str = '';
   for(let i=1;i<=numberOfVerse;++i){
     if(verseMemo[i]){
-      let element = document.getElementById(i);
-      str = str + element.innerText + '\n';
+      str = str + i + ". " + mainBook[i] + '\n';
     }
   }
   str = str + '잠언 ' + chapter + '장';
@@ -105,6 +104,11 @@ const getBook = () => {
 
               verse.innerHTML = '<br/>' + key + ". " + mainBook[key] + '<br/>' +  key + ". " + subBook[key];
               wordsBox.appendChild(verse);
+
+              verse.onclick = async event => {
+                await selectVerse(event.target.id)
+              }
+
             }
           })
       }
@@ -141,8 +145,7 @@ subVersion.addEventListener('change', event => {
 copyAll.addEventListener('click', async () => {
   let str = '잠언 ' + chapter + '장' + '\n';
   for(let i=1;i<=numberOfVerse;++i){
-    let element = document.getElementById(i)
-    str = str + element.innerText + '\n';
+    str = str + i + ". " + mainBook[i] + '\n';
   }
   await navigator.clipboard.writeText(str);
 })
