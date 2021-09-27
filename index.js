@@ -1,10 +1,8 @@
-let menuBox = document.getElementById('menuBox');
 let today = document.getElementById('today');
 let wordsBox = document.getElementById('wordsBox');
 let mainVersion = document.getElementById('mainVersion');
 let subVersion = document.getElementById('subVersion');
 let copyAll = document.getElementById('copyAll');
-let notyLabel = document.getElementById('notyLabel');
 
 let mainBook;
 let subBook;
@@ -14,7 +12,8 @@ let numberOfVerse;
 let isSaved = !!localStorage.getItem(chapter.toString());
 let verseMemo = isSaved ? JSON.parse(localStorage.getItem(chapter.toString())) : {};
 
-today.innerText = new Date().getMonth()+1 + '월 ' + chapter + '일'
+let todayDate = new Date().getMonth()+1 + '월 ' + chapter + '일';
+today.innerText = todayDate;
 
 let mainV = mainVersion.value + '.json';
 let subV = subVersion.value + '.json';
@@ -130,10 +129,10 @@ const resetWordsBox = () => {
 
 //복사 알림
 const copyNoty = () => {
-  notyLabel.innerText = '복사 되었습니다.';
+  today.innerText = 'copied!';
   if(notyTimeout)  clearTimeout(notyTimeout);
   notyTimeout = setTimeout(() => {
-    notyLabel.innerText = '';
+    today.innerText = todayDate;
   },1500);
 }
 
