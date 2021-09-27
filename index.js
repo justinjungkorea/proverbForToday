@@ -4,10 +4,11 @@ let wordsBox = document.getElementById('wordsBox');
 let mainVersion = document.getElementById('mainVersion');
 let subVersion = document.getElementById('subVersion');
 let copyAll = document.getElementById('copyAll');
-
+let notyLabel = document.getElementById('notyLabel');
 
 let mainBook;
 let subBook;
+let notyTimeout;
 let chapter = new Date().getDate();
 let numberOfVerse;
 let isSaved = !!localStorage.getItem(chapter.toString());
@@ -43,6 +44,8 @@ const selectVerse = async id => {
   }
   str = str + '잠언 ' + chapter + '장';
   await navigator.clipboard.writeText(str);
+
+  copyNoty()
 }
 
 //성경 불러오기
@@ -125,6 +128,15 @@ const resetWordsBox = () => {
   }
 }
 
+//복사 알림
+const copyNoty = () => {
+  notyLabel.innerText = '복사 되었습니다.';
+  if(notyTimeout)  clearTimeout(notyTimeout);
+  notyTimeout = setTimeout(() => {
+    notyLabel.innerText = '';
+  },1500);
+}
+
 
 //번역 변경 시
 mainVersion.addEventListener('change', event => {
@@ -148,4 +160,5 @@ copyAll.addEventListener('click', async () => {
     str = str + i + ". " + mainBook[i] + '\n';
   }
   await navigator.clipboard.writeText(str);
+  copyNoty()
 })

@@ -63,3 +63,9 @@ p {
 #today {
     margin-left: 10px;
 }
+
+#notyLabel {
+    width: 200px;
+    font-weight: 500;
+    color: royalblue;
+}
